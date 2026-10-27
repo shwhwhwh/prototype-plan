@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "title": "Prototype Plan",
   "maintainer": "shwhwhwh",
   "projects": [
@@ -15,7 +15,8 @@
       "license": "MIT",
       "latestDownloadReferenced": "v0.3.0",
       "sourceNotes": "Pinned source includes the v0.4 DIY Beta; the v0.3.0 download covers System Template 01.",
-      "description": "A local research workspace connecting research tools and reusable system templates."
+      "description": "A local research workspace connecting research tools and reusable system templates.",
+      "parentId": null
     },
     {
       "id": "branch-canvas",
@@ -29,7 +30,8 @@
       "license": "All rights reserved",
       "release": "v0.1.0",
       "permissionNotes": "Obtain author permission before copying, modifying or redistributing original code.",
-      "description": "Conversation-tree navigation and branch follow-ups in the original Codex desktop app."
+      "description": "Conversation-tree navigation and branch follow-ups in the original Codex desktop app.",
+      "parentId": null
     }
   ]
 }

@@ -67,3 +67,11 @@ templates/          # 原型介绍模板
 本索引由 Rui Li 发起维护，原有项目版权声明保持不变。总仓库不向子项目添加统一开源许可，也不代替项目作者授予授权。
 RN 保持 MIT；BC 保持 All rights reserved。后续原型的授权由其作者在专属仓库明确声明。
 请参阅 [NOTICE](NOTICE)。
+
+## 衍生树与自动归属检查
+
+[查看展示页上的项目衍生树](https://heathcliffak.com/prototype-plan.html#lineage)。`projects.json` 用 `parentId` 记录来源，检查通过的项目节点可点击进入独立仓库。当前只有两个原始项目，尚无登记的衍生项目。
+
+新增衍生项目请使用 [衍生项目登记表](https://github.com/shwhwhwh/prototype-plan/issues/new?template=derivative.yml)，按 [归属检查说明](rights/README.md) 在对应仓库保留作者、完整上游许可与来源清单。RN 的 MIT 条款保持不变；BC 必须另有作者授权。只读 CI 检查固定提交和默认分支的归属文件，不执行衍生仓库代码。每天复核，网页读取通过的检查版本后更新树。检查未通过的节点不会进入展示树。
+
+这套机制约束本目录的收录与展示，不能阻止目录外的复制、保证发现全部侵权，也不替代法律判断。新贡献保留自己的作者归属。

@@ -1,0 +1,42 @@
+name: Register a derived project
+description: Record a parent, preserved attribution and permission evidence for a derivative.
+title: '[Derivative] '
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Derived project name, author and repository URL
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Immediate parent project ID and repository
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Full 40-character derivative commit SHA
+    validations:
+      required: true
+  - type: input
+    id: manifest
+    attributes:
+      label: Link to PROTOTYPE_ORIGIN.json at that commit
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Preserved licenses, attribution, changes and permission evidence
+      description: Include all upstream ancestors. BC requires author approval. Do not disclose private correspondence.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Provenance acknowledgement
+      options:
+        - label: I retain upstream attribution and license terms. This submission does not itself grant permission or transfer ownership.
+          required: true

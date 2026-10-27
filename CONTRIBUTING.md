@@ -32,3 +32,7 @@ that production reliability, security or scalability has been established.
 Keep credentials, private conversations, account state, proprietary data and generated
 runtime storage out of submissions. Authors remain responsible for the material they
 choose to make public.
+
+## Register derived projects
+
+Use the derivative issue form and follow [rights/README.md](rights/README.md). Add an immutable commit and parentId to projects.json only after provenance files exist in the derived repository. Required CI must pass; restricted-use permissions need maintainer-reviewed evidence, not self-attestation. The tree renders passed records only. License and copyright notices apply independently to every ancestor.

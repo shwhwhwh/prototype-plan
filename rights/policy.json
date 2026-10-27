@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "originals": [
+    {
+      "id": "research-nexus",
+      "name": "Research Nexus",
+      "repository": "https://github.com/shwhwhwh/research-nexus",
+      "owner": "Rui Li (@shwhwhwh)",
+      "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a",
+      "license": "MIT",
+      "snapshot": "rights/originals/research-nexus.txt",
+      "licenseSha256": "efbd64aaa35cc67b5f95dae5ff69fac1ed345d1d864e1a1c6b7cff0c5aeb0ec8",
+      "permission": "license"
+    },
+    {
+      "id": "branch-canvas",
+      "name": "Branch Canvas",
+      "repository": "https://github.com/shwhwhwh/codex-branch-canvas",
+      "owner": "Rui Li (@shwhwhwh)",
+      "commit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
+      "license": "All rights reserved",
+      "snapshot": "rights/originals/branch-canvas.txt",
+      "licenseSha256": "ce52e92b26c6bf71e64a0ccb6ca2c124ae6905784b88eeb8c77a1f8d554634f3",
+      "permission": "explicit-grant"
+    }
+  ],
+  "grants": []
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "projectId": "your-derived-project",
+  "repository": "https://github.com/YOUR-ACCOUNT/YOUR-REPO",
+  "parent": {
+    "id": "research-nexus",
+    "repository": "https://github.com/shwhwhwh/research-nexus",
+    "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a"
+  },
+  "changes": "Describe your additions; do not claim authorship of upstream work.",
+  "upstream": [
+    {
+      "id": "research-nexus",
+      "repository": "https://github.com/shwhwhwh/research-nexus",
+      "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a",
+      "owner": "Rui Li (@shwhwhwh)",
+      "licenseFile": "LICENSES/research-nexus.txt"
+    }
+  ]
+}
