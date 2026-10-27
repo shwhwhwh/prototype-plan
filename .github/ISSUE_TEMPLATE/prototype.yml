@@ -1,0 +1,36 @@
+name: Share a prototype
+description: Share an AI-assisted idea with its own project repository.
+title: "[Prototype] "
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Prototype name and author
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Dedicated repository URL
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: The problem and proposed prototype
+    validations:
+      required: true
+  - type: textarea
+    id: demo
+    attributes:
+      label: How to try it and what works today
+      description: Include requirements, demo evidence and known limits. State clearly if it is still an idea.
+    validations:
+      required: true
+  - type: textarea
+    id: rights
+    attributes:
+      label: License, ownership and AI assistance
+      description: Explain what others may reuse and where they need permission. Do not submit private data.
+    validations:
+      required: true

@@ -1,0 +1,8 @@
+[submodule "prototypes/research-nexus"]
+	path = prototypes/research-nexus
+	url = https://github.com/shwhwhwh/research-nexus.git
+	branch = main
+[submodule "prototypes/branch-canvas"]
+	path = prototypes/branch-canvas
+	url = https://github.com/shwhwhwh/codex-branch-canvas.git
+	branch = main

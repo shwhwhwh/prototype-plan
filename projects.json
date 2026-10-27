@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "title": "Prototype Plan",
+  "maintainer": "shwhwhwh",
+  "projects": [
+    {
+      "id": "research-nexus",
+      "name": "Research Nexus",
+      "shortName": "RN",
+      "owner": "Rui Li (@shwhwhwh)",
+      "repository": "https://github.com/shwhwhwh/research-nexus",
+      "path": "prototypes/research-nexus",
+      "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a",
+      "stage": "prototype",
+      "license": "MIT",
+      "latestDownloadReferenced": "v0.3.0",
+      "sourceNotes": "Pinned source includes the v0.4 DIY Beta; the v0.3.0 download covers System Template 01.",
+      "description": "A local research workspace connecting research tools and reusable system templates."
+    },
+    {
+      "id": "branch-canvas",
+      "name": "Branch Canvas",
+      "shortName": "BC",
+      "owner": "Rui Li (@shwhwhwh)",
+      "repository": "https://github.com/shwhwhwh/codex-branch-canvas",
+      "path": "prototypes/branch-canvas",
+      "commit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
+      "stage": "prototype",
+      "license": "All rights reserved",
+      "release": "v0.1.0",
+      "permissionNotes": "Obtain author permission before copying, modifying or redistributing original code.",
+      "description": "Conversation-tree navigation and branch follow-ups in the original Codex desktop app."
+    }
+  ]
+}
