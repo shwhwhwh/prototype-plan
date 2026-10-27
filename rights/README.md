@@ -4,9 +4,9 @@ This is a catalog admission safeguard, not DRM, ownership certification or a leg
 
 ## New owner default and prior grants
 
-Rui Li's new original material uses **LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0**: all rights reserved with free personal study, noncommercial experiments and voluntary contribution work; commercial use needs separate written authorization. New owner-controlled prototypes and owner-built derivatives must keep this policy, LICENSING.json and the canonical commercial/contribution terms. Other authors retain their rights.
+All owner-controlled material in Rui Li's official distributions, including earlier self-owned code, uses **LicenseRef-Prototype-Plan-Personal-Noncommercial-1.1**: all rights reserved with free personal study, noncommercial experiments and voluntary contribution work; commercial use needs separate written authorization. New owner-controlled prototypes and owner-built derivatives must keep this policy, LICENSING.json and the canonical commercial/contribution terms. Other authors retain their rights.
 
-RN's historical MIT code, including the recorded 45ce4b4 boundary and v0.3.0 release, keeps its MIT commercial permissions. BC's old v0.1.0 retains its original package terms. Immutable historical snapshots are in rights/history/. New terms never turn unchanged old MIT material into exclusively noncommercial code.
+RN's historical MIT code, including the recorded 45ce4b4 boundary and v0.3.0 release, keeps its MIT commercial permissions. BC's old v0.1.0 retains its original package terms. Immutable historical snapshots are in rights/history/. The current distribution offer is distinct from valid rights already obtained under historical grants; prior rights are not revoked. New material outside those grants is not licensed under MIT by an archived notice.
 
 ## Registration
 
@@ -22,7 +22,7 @@ New deliberate external code/documentation contributions require express PP-CLA-
 
 ## Operation
 
-The read-only workflows run on push, PR, manual dispatch and daily schedule (lineage). PRs use the base commit's checker/policy, never submitted executable code. Only public repository files are read. Both registered source and default-branch attribution files are checked; upstream historic licenses are always read at their **recorded** commits. Network failures block admission. Current source notice removal and changed historical archives fail checks.
+The read-only workflows run on push, PR, manual dispatch and daily schedule (lineage). PRs use the base commit's checker/policy, never submitted executable code. Only public repository files are read. Both registered source and default-branch attribution files are checked; upstream historic licenses are always read at their **recorded** commits. Network failures block admission. Current source scope narrowing (for example to new additions only), false prior-grant/third-party safeguards, notice removal and changed historical archives fail checks. The exact policy 1.0 text remains a trusted historical snapshot; its old source commits never inherit the current 1.1 hash.
 
 Main requires lineage-policy from GitHub Actions and CODEOWNERS approval; the owner retains administrative bypass. The website reads the latest completed successful main run and its exact index. Failures, unavailable results or results older than 50 hours hide descendants and show a dated original snapshot. No scheduled writes, automatic allegations or external repository modifications occur.
 

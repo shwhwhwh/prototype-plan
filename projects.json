@@ -10,15 +10,15 @@
       "owner": "Rui Li (@shwhwhwh)",
       "repository": "https://github.com/shwhwhwh/research-nexus",
       "path": "prototypes/research-nexus",
-      "commit": "f86114b2c4badd8bdf8300b8508b73ed5c72b952",
+      "commit": "750e1f9785d442ea9af3afbfe805188f28cd5e26",
       "stage": "prototype",
-      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
-      "latestDownloadReferenced": "v0.7.1",
-      "sourceNotes": "v0.7.1 Windows source kit with full licensing/history files and setup guide. Earlier MIT material keeps its grants; old release downloads are withdrawn.",
+      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.1",
+      "latestDownloadReferenced": "v0.7.2",
+      "sourceNotes": "v0.7.2: policy 1.1 offers all owner-controlled code in the official distribution, including earlier self-owned code; valid prior grants and third-party licenses remain in force.",
       "description": "A local research workspace connecting research tools and reusable system templates.",
       "parentId": null,
       "rightsHolderLogin": "shwhwhwh",
-      "permissionNotes": "All rights reserved for newly licensed original material. Free personal study, noncommercial experiments and voluntary contributions; commercial use requires separate written authorization. Prior grants are preserved.",
+      "permissionNotes": "All owner-controlled code in this official distribution is offered under policy 1.1, including earlier self-owned code. Personal study/noncommercial experiments and voluntary improvements are free; commercial rights not already held require separate written authorization. Valid prior grants and third-party licenses are preserved.",
       "historicalLicenses": [
         {
           "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a",
@@ -35,9 +35,14 @@
         {
           "commit": "746dc8724763b0e0e60d94d6cd9606422c1c1b4a",
           "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0"
+        },
+        {
+          "commit": "f86114b2c4badd8bdf8300b8508b73ed5c72b952",
+          "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0"
         }
       ],
-      "release": "v0.7.1"
+      "release": "v0.7.2",
+      "licenseScope": "all-owner-controlled-material-in-official-distribution"
     },
     {
       "id": "branch-canvas",
@@ -46,11 +51,11 @@
       "owner": "Rui Li (@shwhwhwh)",
       "repository": "https://github.com/shwhwhwh/codex-branch-canvas",
       "path": "prototypes/branch-canvas",
-      "commit": "2b1adf10ec0e44ba7c47708b5d6acc461ee4d442",
+      "commit": "ceeb3f2fa9ec5e6149d0da962ec86ab6f0a5e9b2",
       "stage": "prototype",
-      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
-      "release": "v0.1.2",
-      "permissionNotes": "All rights reserved for newly licensed original material. Free personal study, noncommercial experiments and voluntary contributions; commercial use requires separate written authorization. Prior grants are preserved.",
+      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.1",
+      "release": "v0.1.3",
+      "permissionNotes": "All owner-controlled code in this official distribution is offered under policy 1.1, including earlier self-owned code. Personal study/noncommercial experiments and voluntary improvements are free; commercial rights not already held require separate written authorization. Valid prior grants and third-party licenses are preserved.",
       "description": "Conversation-tree navigation and branch follow-ups in the original Codex desktop app.",
       "parentId": null,
       "rightsHolderLogin": "shwhwhwh",
@@ -66,11 +71,16 @@
         {
           "commit": "816e6edfb4b72594e3f004c22be51ee584832f1b",
           "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0"
+        },
+        {
+          "commit": "2b1adf10ec0e44ba7c47708b5d6acc461ee4d442",
+          "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0"
         }
       ],
-      "latestDownloadReferenced": "v0.1.2",
-      "sourceNotes": "v0.1.2 prebuilt Windows plugin with full licensing/history files. Earlier release downloads are withdrawn; original tags and permissions remain recorded. Upgrade guide uses stopped-backend SQLite backups; JSON import is not implemented."
+      "latestDownloadReferenced": "v0.1.3",
+      "sourceNotes": "v0.1.3: policy 1.1 offers all owner-controlled code in the official distribution, including earlier self-owned code; valid prior grants and third-party licenses remain in force.",
+      "licenseScope": "all-owner-controlled-material-in-official-distribution"
     }
   ],
-  "ownerDefaultPolicy": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0"
+  "ownerDefaultPolicy": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.1"
 }

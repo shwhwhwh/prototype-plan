@@ -6,10 +6,10 @@
       "name": "Research Nexus",
       "repository": "https://github.com/shwhwhwh/research-nexus",
       "owner": "Rui Li (@shwhwhwh)",
-      "commit": "f86114b2c4badd8bdf8300b8508b73ed5c72b952",
-      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
+      "commit": "750e1f9785d442ea9af3afbfe805188f28cd5e26",
+      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.1",
       "snapshot": "rights/originals/research-nexus.txt",
-      "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+      "licenseSha256": "6da7440c53c7f1bb9fc5c6160db3145e3885e806e70380f5782f85d5e9a09f6f",
       "permission": "personal-noncommercial",
       "historyManifest": [
         {
@@ -17,6 +17,12 @@
           "license": "MIT",
           "licenseFile": "LICENSES/research-nexus-legacy-MIT.txt",
           "licenseSha256": "efbd64aaa35cc67b5f95dae5ff69fac1ed345d1d864e1a1c6b7cff0c5aeb0ec8"
+        },
+        {
+          "throughCommit": "f86114b2c4badd8bdf8300b8508b73ed5c72b952",
+          "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
+          "licenseFile": "LICENSES/prototype-plan-personal-noncommercial-1.0.txt",
+          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931"
         }
       ],
       "historical": [
@@ -45,8 +51,31 @@
           "commit": "746dc8724763b0e0e60d94d6cd9606422c1c1b4a",
           "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
           "permission": "personal-noncommercial",
-          "snapshot": "rights/originals/research-nexus.txt",
-          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931"
+          "snapshot": "rights/history/prototype-plan-personal-noncommercial-1.0.txt",
+          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+          "historyManifest": [
+            {
+              "throughCommit": "45ce4b423d0b1a4881bf169d228e014b14886b7f",
+              "license": "MIT",
+              "licenseFile": "LICENSES/research-nexus-legacy-MIT.txt",
+              "licenseSha256": "efbd64aaa35cc67b5f95dae5ff69fac1ed345d1d864e1a1c6b7cff0c5aeb0ec8"
+            }
+          ]
+        },
+        {
+          "commit": "f86114b2c4badd8bdf8300b8508b73ed5c72b952",
+          "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
+          "permission": "personal-noncommercial",
+          "snapshot": "rights/history/prototype-plan-personal-noncommercial-1.0.txt",
+          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+          "historyManifest": [
+            {
+              "throughCommit": "45ce4b423d0b1a4881bf169d228e014b14886b7f",
+              "license": "MIT",
+              "licenseFile": "LICENSES/research-nexus-legacy-MIT.txt",
+              "licenseSha256": "efbd64aaa35cc67b5f95dae5ff69fac1ed345d1d864e1a1c6b7cff0c5aeb0ec8"
+            }
+          ]
         }
       ]
     },
@@ -55,10 +84,10 @@
       "name": "Branch Canvas",
       "repository": "https://github.com/shwhwhwh/codex-branch-canvas",
       "owner": "Rui Li (@shwhwhwh)",
-      "commit": "2b1adf10ec0e44ba7c47708b5d6acc461ee4d442",
-      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
+      "commit": "ceeb3f2fa9ec5e6149d0da962ec86ab6f0a5e9b2",
+      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.1",
       "snapshot": "rights/originals/branch-canvas.txt",
-      "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+      "licenseSha256": "6da7440c53c7f1bb9fc5c6160db3145e3885e806e70380f5782f85d5e9a09f6f",
       "permission": "personal-noncommercial",
       "historyManifest": [
         {
@@ -66,6 +95,12 @@
           "license": "All rights reserved",
           "licenseFile": "LICENSES/branch-canvas-legacy-reserved.txt",
           "licenseSha256": "ce52e92b26c6bf71e64a0ccb6ca2c124ae6905784b88eeb8c77a1f8d554634f3"
+        },
+        {
+          "throughCommit": "2b1adf10ec0e44ba7c47708b5d6acc461ee4d442",
+          "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
+          "licenseFile": "LICENSES/prototype-plan-personal-noncommercial-1.0.txt",
+          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931"
         }
       ],
       "historical": [
@@ -80,15 +115,46 @@
           "commit": "11846d276dba2569f884526a5eb5dc46d0805015",
           "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
           "permission": "personal-noncommercial",
-          "snapshot": "rights/originals/branch-canvas.txt",
-          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931"
+          "snapshot": "rights/history/prototype-plan-personal-noncommercial-1.0.txt",
+          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+          "historyManifest": [
+            {
+              "throughCommit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
+              "license": "All rights reserved",
+              "licenseFile": "LICENSES/branch-canvas-legacy-reserved.txt",
+              "licenseSha256": "ce52e92b26c6bf71e64a0ccb6ca2c124ae6905784b88eeb8c77a1f8d554634f3"
+            }
+          ]
         },
         {
           "commit": "816e6edfb4b72594e3f004c22be51ee584832f1b",
           "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
           "permission": "personal-noncommercial",
-          "snapshot": "rights/originals/branch-canvas.txt",
-          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931"
+          "snapshot": "rights/history/prototype-plan-personal-noncommercial-1.0.txt",
+          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+          "historyManifest": [
+            {
+              "throughCommit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
+              "license": "All rights reserved",
+              "licenseFile": "LICENSES/branch-canvas-legacy-reserved.txt",
+              "licenseSha256": "ce52e92b26c6bf71e64a0ccb6ca2c124ae6905784b88eeb8c77a1f8d554634f3"
+            }
+          ]
+        },
+        {
+          "commit": "2b1adf10ec0e44ba7c47708b5d6acc461ee4d442",
+          "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
+          "permission": "personal-noncommercial",
+          "snapshot": "rights/history/prototype-plan-personal-noncommercial-1.0.txt",
+          "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+          "historyManifest": [
+            {
+              "throughCommit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
+              "license": "All rights reserved",
+              "licenseFile": "LICENSES/branch-canvas-legacy-reserved.txt",
+              "licenseSha256": "ce52e92b26c6bf71e64a0ccb6ca2c124ae6905784b88eeb8c77a1f8d554634f3"
+            }
+          ]
         }
       ]
     }
@@ -97,11 +163,13 @@
   "ownerDefaults": {
     "ownerLogin": "shwhwhwh",
     "rightsHolder": "Rui Li (@shwhwhwh)",
-    "policyId": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
+    "policyId": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.1",
     "permission": "personal-noncommercial",
     "licenseSnapshot": "templates/owner-rights/LICENSE",
-    "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
-    "commercialSha256": "374b35821c551e4377a1d06d51cb0d2f6cbc57c2bb87188db01269384efa4c77",
-    "contributorSha256": "38d0b6e17510329babdb5ab1cfa05a9c40df96edfdff6064919c7976aa746601"
+    "licenseSha256": "6da7440c53c7f1bb9fc5c6160db3145e3885e806e70380f5782f85d5e9a09f6f",
+    "commercialSha256": "34263fd74e70d0c94e487cf373a526cf6e5de877814a72e88cf2f9ea065b26e0",
+    "contributorSha256": "38d0b6e17510329babdb5ab1cfa05a9c40df96edfdff6064919c7976aa746601",
+    "policyVersion": "1.1",
+    "scope": "all-owner-controlled-material-in-official-distribution"
   }
 }

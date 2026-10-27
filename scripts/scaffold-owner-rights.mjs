@@ -28,7 +28,8 @@ if (parent) {
   for (const entry of upstreams) {
     entry.text = await remote(repoName(entry.repository), 'LICENSE', entry.commit);
     const anchor = policy.originals.find(p => p.id === entry.id);
-    let historical = entry.commit === anchor?.commit ? anchor.historyManifest || [] : [];
+    const terms = entry.commit === anchor?.commit ? anchor : anchor?.historical?.find(v => v.commit === entry.commit);
+    let historical = terms?.historyManifest || [];
     if (!anchor && registry.projects.find(p => p.id === entry.id)?.rightsHolderLogin === 'shwhwhwh') historical = JSON.parse(await remote(repoName(entry.repository), 'LICENSING.json', entry.commit)).historical || [];
     entry.historicalNotices = [];
     for (const [index, notice] of historical.entries()) {
@@ -44,7 +45,7 @@ await copyFile(join(template, 'check-license-policy.mjs'), join(target, 'scripts
 await copyFile(join(template, 'rights-workflow.yml'), join(target, '.github', 'workflows', 'rights.yml'));
 await writeFile(join(target, '.github', 'PULL_REQUEST_TEMPLATE.md'), (await readFile(join(template, 'PULL_REQUEST_TEMPLATE.md'), 'utf8')).replace('../blob/main/CONTRIBUTOR_AGREEMENT.md', repository + '/blob/main/CONTRIBUTOR_AGREEMENT.md'));
 await writeFile(join(target, '.github', 'CODEOWNERS'), '* @shwhwhwh\n');
-const manifest = { schemaVersion: 1, projectId: id, repository, rightsHolder: policy.ownerDefaults.rightsHolder, rightsHolderLogin: 'shwhwhwh', policyId: policy.ownerDefaults.policyId, licenseSha256: digest(await readFile(join(template, 'LICENSE'), 'utf8')), policyVersion: '1.0', appliesTo: 'New original material whose rights the owner has authority to license; previous and third-party grants are unaffected.', commercialPermission: 'separate-written-authorization', contributorAgreement: 'PP-CLA-1.0', historical: [] };
+const manifest = { schemaVersion: 1, projectId: id, repository, rightsHolder: policy.ownerDefaults.rightsHolder, rightsHolderLogin: 'shwhwhwh', policyId: policy.ownerDefaults.policyId, licenseSha256: digest(await readFile(join(template, 'LICENSE'), 'utf8')), policyVersion: '1.1', scope: 'all-owner-controlled-material-in-official-distribution', preservesPriorGrants: true, preservesThirdPartyLicenses: true, appliesTo: 'All owner-controlled material in this official distribution, including earlier self-owned code; valid prior grants and third-party licenses are preserved.', commercialPermission: 'separate-written-authorization', contributorAgreement: 'PP-CLA-1.0', historical: [] };
 await writeFile(join(target, 'LICENSING.json'), JSON.stringify(manifest, null, 2) + '\n');
 let parentNotice = '';
 if (parent) {
@@ -58,6 +59,6 @@ if (parent) {
     upstream: upstreams.map(({ text, historicalNotices, ...entry }) => ({ ...entry, licenseFile: 'LICENSES/' + entry.id + '.txt', historicalNotices: historicalNotices.map(({ text, ...notice }) => notice) })) }, null, 2) + '\n');
   parentNotice = '\n' + upstreams.map(entry => `Upstream ${entry.id}: ${entry.repository}\nOriginal author: ${entry.owner}; source ${entry.commit}; preserve LICENSES/${entry.id}.txt.`).join('\n') + '\nNo commercial rights beyond the actual upstream licenses are implied.\n';
 }
-await writeFile(join(target, 'README.md'), `# ${id}\n\nCopyright © 2026 Rui Li (@shwhwhwh). All rights reserved.\nFree personal study/noncommercial experiments under LICENSE; commercial permission is separate.\nCollaboration welcome under CONTRIBUTOR_AGREEMENT.md.\n${parentNotice}`);
-await writeFile(join(target, 'AGENTS.md'), 'Follow LICENSE and LICENSING.json. Preserve prior grants and third-party rights. Owner-created new material defaults to reserved rights with free personal study/noncommercial experiments; commercial authorization is separate. Collaboration requires the documented contribution grant.\n');
+await writeFile(join(target, 'README.md'), `# ${id}\n\nCopyright © 2026 Rui Li (@shwhwhwh). All rights reserved.\nAll owner-controlled code in this official distribution, including earlier self-owned code, is offered under LICENSE 1.1.\nFree personal study/noncommercial experiments; commercial rights not already held require separate authorization.\nCollaboration welcome under CONTRIBUTOR_AGREEMENT.md.\n${parentNotice}`);
+await writeFile(join(target, 'AGENTS.md'), 'Follow LICENSE and LICENSING.json. Preserve prior grants and third-party rights. All owner-controlled material in official distributions, including earlier self-owned code, defaults to reserved rights with free personal study/noncommercial experiments; commercial authorization is separate. Collaboration requires the documented contribution grant.\n');
 console.log(`Prepared owner rights in ${target}; review authorship, add original code, commit, and register the actual immutable SHA.`);

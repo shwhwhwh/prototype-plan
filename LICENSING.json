@@ -4,8 +4,21 @@
   "repository": "https://github.com/shwhwhwh/prototype-plan",
   "rightsHolder": "Rui Li (@shwhwhwh)",
   "rightsHolderLogin": "shwhwhwh",
-  "policyId": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
-  "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+  "policyId": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.1",
+  "licenseSha256": "6da7440c53c7f1bb9fc5c6160db3145e3885e806e70380f5782f85d5e9a09f6f",
   "contributorAgreement": "PP-CLA-1.0",
-  "historical": []
+  "historical": [
+    {
+      "throughCommit": "bde42d137c5f163b273d3502ed0b8dead5b00f3b",
+      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
+      "licenseFile": "LICENSES/prototype-plan-personal-noncommercial-1.0.txt",
+      "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931"
+    }
+  ],
+  "policyVersion": "1.1",
+  "scope": "all-owner-controlled-material-in-official-distribution",
+  "preservesPriorGrants": true,
+  "preservesThirdPartyLicenses": true,
+  "effectiveDate": "2026-10-27",
+  "appliesTo": "All owner-controlled material in this official distribution, including earlier self-owned code; valid prior grants and third-party licenses are preserved."
 }

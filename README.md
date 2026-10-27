@@ -6,18 +6,18 @@
 
 ## 默认权利政策
 
-由 Rui Li 拥有相应权利的新原型、自行构建的衍生项目及新原创贡献，默认 **保留全部权利；个人学习、非商业试验及协作改进可免费进行，商业化须另行书面授权**。这不是无限制的开源许可。欢迎共同完善，贡献者保留署名和自己的版权；接受新贡献前，须取得 [PP-CLA-1.0](CONTRIBUTOR_AGREEMENT.md) 或另行约定的维护、发布和商业授权权限。
+今后 RN、BC 和由 Rui Li 拥有相应权利的原型、自建衍生项目的官方发行中，全部自有代码（包括此前自有代码，不只新增部分）统一按许可 1.1 提供： **保留全部权利；个人学习、非商业试验及协作改进可免费进行，商业化须另行书面授权**。这不是无限制的开源许可。欢迎共同完善，贡献者保留署名和自己的版权；接受新贡献前，须取得 [PP-CLA-1.0](CONTRIBUTOR_AGREEMENT.md) 或另行约定的维护、发布和商业授权权限。
 
 已有许可、第三方及其他作者的权利不被覆盖。仅提出想法，不意味着取得整个想法或独立实现的独占权。[完整政策](RIGHTS_POLICY.md) · [许可正文](LICENSE) · [商业授权说明](COMMERCIAL_LICENSE.md)。
 
 ## 当前官方版本与许可边界
 
-| 原型 | 当前官方包 / 安装 | 新原创内容 | 历史授权 |
+| 原型 | 当前官方包 / 安装 | 全部自有代码的官方发行许可 | 历史授权 |
 | --- | --- | --- | --- |
-| [Research Nexus](https://github.com/shwhwhwh/research-nexus) | [v0.7.1 Windows 源码包](https://github.com/shwhwhwh/research-nexus/releases/tag/v0.7.1) · [安装指南](https://github.com/shwhwhwh/research-nexus/blob/main/INSTALL.md) | 保留权利，学习/非商业试验免费，商业化另授权 | 切换前 MIT 材料继续按 MIT，包括商业使用；旧 Releases 撤下公开入口 |
-| [Branch Canvas](https://github.com/shwhwhwh/codex-branch-canvas) | [v0.1.2 Windows 插件包](https://github.com/shwhwhwh/codex-branch-canvas/releases/tag/v0.1.2) · [安装指南](https://github.com/shwhwhwh/codex-branch-canvas#readme) | 保留权利，学习/非商业试验免费，商业化另授权 | 旧 v0.1.0 保持原授权；旧 Releases 撤下公开入口 |
+| [Research Nexus](https://github.com/shwhwhwh/research-nexus) | [v0.7.2 Windows 源码包](https://github.com/shwhwhwh/research-nexus/releases/tag/v0.7.2) · [安装指南](https://github.com/shwhwhwh/research-nexus/blob/main/INSTALL.md) | 保留权利，学习/非商业试验免费，商业化另授权 | 既有有效 MIT 授权保留，包括原范围商业权限；旧 Releases 撤下公开入口 |
+| [Branch Canvas](https://github.com/shwhwhwh/codex-branch-canvas) | [v0.1.3 Windows 插件包](https://github.com/shwhwhwh/codex-branch-canvas/releases/tag/v0.1.3) · [安装指南](https://github.com/shwhwhwh/codex-branch-canvas#readme) | 保留权利，学习/非商业试验免费，商业化另授权 | 旧 v0.1.0 保持原授权；旧 Releases 撤下公开入口 |
 
-RN 的旧 MIT 权限不会因新政策被撤销或追溯收费；未改变的旧 MIT 材料仍可按 MIT 使用。新限制仅针对首次按新许可发布的原创内容。BC 的旧 ZIP、标签和校验值不被替换。[RN 许可沿革](https://github.com/shwhwhwh/research-nexus/blob/main/LICENSE_HISTORY.md) · [BC 许可沿革](https://github.com/shwhwhwh/codex-branch-canvas/blob/main/LICENSE_HISTORY.md)。
+RN 既有有效 MIT 授权在原有范围内继续有效，不追溯收费。今后官方发行对全部自有代码提供许可 1.1，包括此前自有代码；第三方代码继续遵循各自许可。BC 的旧 ZIP、标签和校验值不被替换。[RN 许可沿革](https://github.com/shwhwhwh/research-nexus/blob/main/LICENSE_HISTORY.md) · [BC 许可沿革](https://github.com/shwhwhwh/codex-branch-canvas/blob/main/LICENSE_HISTORY.md)。
 
 ## 获取、参与和登记
 

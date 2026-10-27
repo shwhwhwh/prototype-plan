@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile, readdir, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, readdir, rm, mkdir } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,7 +24,7 @@ test('new owner project scaffold has reserved/free-use terms and commercial/coll
   const dir = await fixture(); try {
     const result = run(check, ['--root', dir]); assert.equal(result.status, 0, result.stderr);
     const files = await readdir(dir); assert(files.includes('LICENSE') && files.includes('COMMERCIAL_LICENSE.md') && files.includes('CONTRIBUTOR_AGREEMENT.md'));
-    const manifest = JSON.parse(await readFile(join(dir, 'LICENSING.json'), 'utf8')); assert.equal(manifest.rightsHolderLogin, 'shwhwhwh'); assert.equal(manifest.historical.length, 0);
+    const manifest = JSON.parse(await readFile(join(dir, 'LICENSING.json'), 'utf8')); assert.equal(manifest.rightsHolderLogin, 'shwhwhwh'); assert.equal(manifest.historical.length, 0); assert.equal(manifest.scope, 'all-owner-controlled-material-in-official-distribution'); assert.equal(manifest.policyVersion, '1.1');
     const template = await readFile(join(dir, '.github', 'PULL_REQUEST_TEMPLATE.md'), 'utf8'); assert(!/^CLA-ACCEPTED: PP-CLA-1\.0\s*$/m.test(template));
     const repeat = run(scaffold, ['--target', dir, '--id', 'fixture-project', '--repository', 'https://github.com/shwhwhwh/fixture-project']); assert.notEqual(repeat.status, 0);
   } finally { await cleanup(dir); }
@@ -42,5 +43,33 @@ test('PR cannot rewrite reservation or commercial/contribution terms relative to
   const trusted = await fixture(), candidate = await fixture(); try {
     await writeFile(join(candidate, 'COMMERCIAL_LICENSE.md'), 'All commercial uses are free now.');
     assert.notEqual(run(check, ['--root', candidate, '--trusted', trusted]).status, 0);
+  } finally { await cleanup(trusted); await cleanup(candidate); }
+});
+
+test('official offer cannot narrow scope to new additions, drop safeguards or roll back its policy', async () => {
+  const trusted = await fixture(), candidate = await fixture(); try {
+    const original = JSON.parse(await readFile(join(candidate, 'LICENSING.json'), 'utf8'));
+    assert.equal(run(check, ['--root', candidate, '--trusted', trusted]).status, 0);
+    for (const mutation of [{scope:'new-material-only'}, {preservesPriorGrants:false}, {preservesThirdPartyLicenses:false}, {policyId:'LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0'}]) {
+      await writeFile(join(candidate,'LICENSING.json'),JSON.stringify({...original,...mutation}));
+      assert.notEqual(run(check,['--root',candidate,'--trusted',trusted]).status,0,JSON.stringify(mutation));
+    }
+  } finally { await cleanup(trusted); await cleanup(candidate); }
+});
+
+test('changing the current offer still requires the exact earlier policy archive', async () => {
+  const trusted = await fixture(), candidate = await fixture(); try {
+    const archive = await readFile(join(root,'rights/history/prototype-plan-personal-noncommercial-1.0.txt'),'utf8');
+    const hash = createHash('sha256').update(archive.replace(/\r\n/g,'\n').trim()).digest('hex');
+    for (const dir of [trusted,candidate]) {
+      await mkdir(join(dir,'LICENSES'));
+      await writeFile(join(dir,'LICENSES/previous.txt'),archive);
+      const manifest=JSON.parse(await readFile(join(dir,'LICENSING.json'),'utf8'));
+      manifest.historical=[{throughCommit:'a'.repeat(40),license:'LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0',licenseFile:'LICENSES/previous.txt',licenseSha256:hash}];
+      await writeFile(join(dir,'LICENSING.json'),JSON.stringify(manifest));
+    }
+    assert.equal(run(check,['--root',candidate,'--trusted',trusted]).status,0);
+    await writeFile(join(candidate,'LICENSES/previous.txt'),'All previous grants are revoked.');
+    assert.notEqual(run(check,['--root',candidate,'--trusted',trusted]).status,0);
   } finally { await cleanup(trusted); await cleanup(candidate); }
 });

@@ -87,6 +87,10 @@ export async function audit(registry, policy, read, loadSnapshot, options = {}) 
     insist(manifest.schemaVersion === 1 && manifest.projectId === item.id && manifest.repository === item.repository
       && manifest.rightsHolder === defaults.rightsHolder && manifest.rightsHolderLogin === defaults.ownerLogin
       && manifest.policyId === defaults.policyId && manifest.licenseSha256 === defaults.licenseSha256, 'Owner policy manifest mismatch');
+    if (defaults.scope) {
+      insist(manifest.policyVersion === '1.1' && manifest.scope === defaults.scope, 'Official distribution scope mismatch');
+      insist(manifest.preservesPriorGrants === true && manifest.preservesThirdPartyLicenses === true, 'Prior-grant/third-party safeguards missing');
+    }
     insist(digest(await own(item, 'LICENSE')) === defaults.licenseSha256, 'Reserved/limited-use license changed');
     insist(digest(await own(item, 'COMMERCIAL_LICENSE.md')) === defaults.commercialSha256, 'Commercial permission terms changed');
     insist(digest(await own(item, 'CONTRIBUTOR_AGREEMENT.md')) === defaults.contributorSha256 && manifest.contributorAgreement === 'PP-CLA-1.0', 'Contribution terms changed');
@@ -137,7 +141,7 @@ export async function audit(registry, policy, read, loadSnapshot, options = {}) 
           insist(normalize(preserved).includes(normalize(upstreamLicense)), 'Full upstream license/copyright notice missing: ' + upstream.id);
           // A current RN source distribution still contains previously MIT-licensed material.
           // Preserving only its new top-level license must not discard those existing notices.
-          let historicalNotices = version.commit === upstream.commit ? (anchor?.historyManifest || []) : [];
+          let historicalNotices = terms?.historyManifest || [];
           if (ownerTerms) {
             const upstreamManifest = JSON.parse(await read(repository(upstream.repository), 'LICENSING.json', version.commit));
             insist(upstreamManifest.policyId === policy.ownerDefaults.policyId, 'Unknown intermediate owner policy');

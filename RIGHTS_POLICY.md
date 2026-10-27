@@ -1,55 +1,34 @@
 # Rui Li's prototype rights policy / 原型权利政策
 
-Effective policy version: **PP-Personal-Noncommercial-1.0**, 2026-10-27.
+Effective policy: **PP-Personal-Noncommercial-1.1**, 2026-10-27.
 
-由 Rui Li (@shwhwhwh) 拥有相应权利的新原型，以及由 Rui Li 自行构建的原型衍生项目，
-默认保留全部权利，同时明确允许个人学习和非商业试验免费使用。商业化须另行书面授权。
-欢迎他人提出想法、提交 Issue 和 PR，共同完善原型及衍生物。
+今后 RN、BC 及由 Rui Li 拥有相应权利的原型、自建衍生物的官方发行中，**全部自有代码统一按新许可提供，包括此前编写或发布的自有代码，不只限于新增部分**。保留全部权利；个人学习、非商业试验和自愿协作改进免费；尚未取得的商业使用权限须单独书面授权。
 
-This is the default for **new material whose rights Rui Li owns or has authority to
-license**. It does not claim exclusive rights to an idea, an independently developed
-implementation, all AI output, third-party code, or another contributor's work.
-Other people's prototypes in this catalog retain their own declared terms; the
-catalog does not impose this owner's default on unrelated authors.
+## Current official offer
 
-## Free collaboration and commercial permissions
+Policy 1.1 covers all owner-controlled code and other covered material in the official distribution that Rui Li owns or is expressly authorized to license on these terms. It is not limited to newly written or first-published code. The current release's LICENSE and LICENSING.json declare the offer and machine-readable scope. RN v0.7.2 and BC v0.1.3 are the first application releases using this full scope.
 
-- Free: personal learning, noncommercial research/prototypes/experiments, and voluntarily
-  proposing improvements, under the limited grant in [the license template](templates/owner-rights/LICENSE).
-- Noncommercial versions may be shared with the complete original license, attribution,
-  upstream source/version and modification notices; upstream material cannot be relicensed
-  as unrestricted MIT or granted broader commercial rights by a downstream contributor.
-- Commercial products/services, paid delivery, hosted/SaaS use, advertising-supported use
-  and enterprise production operations need prior written authorization for restricted material.
-- Commercial scope, fees and any revenue share must be agreed separately. They are not
-  automatically imposed on every application, all its revenue or its independent author.
-- Contributors retain authorship. Accepted new contributions require an express grant under
-  [PP-CLA-1.0](templates/owner-rights/CONTRIBUTOR_AGREEMENT.md) or separate written terms before
-  the project may maintain, publish and commercially sublicense them.
+This does not assert ownership over ideas, functionality, independent implementations, all AI output, third-party work or another contributor's retained copyright. Other authors' prototypes in the catalog retain their own policies. A record or automated check does not prove copyright ownership.
 
-## RN / BC transition: do not rewrite past permissions
+## Free use, commercialization and collaboration
 
-- RN: every version previously published under MIT, including the public source through
-  commit `45ce4b423d0b1a4881bf169d228e014b14886b7f` and the existing v0.3.0 release/demo,
-  retains its prior MIT grant. Preserve its full text in LICENSES and its source history.
-  The new policy applies only to new copyrightable material first licensed under it
-  at/after the transition commit. Unchanged old MIT material remains usable under MIT.
-- BC: the v0.1.0 release and prior source through commit
-  `e69cecfe9a4d8f751644d020c23266c721f175f3` retain their recorded all-rights-reserved terms.
-  Source distributions containing the new LICENSE offer the stated free limited-use grant.
-  Do not silently replace old release ZIPs, licenses, hashes or Git tags.
-- Third-party licenses and any valid prior grants are unaffected. A new LICENSE filename
-  alone does not erase existing permissions or cure a missing rights chain.
+- Personal study, noncommercial experiments and voluntary project improvements are free under [LICENSE](LICENSE). Noncommercial sharing must preserve full notices, origin/version and modification information, without granting broader upstream rights.
+- Commercial products, paid delivery, SaaS/hosting, advertising-supported use and enterprise production need written authorization for rights not already validly held. Fees, scope, duration and any revenue share are agreed separately; no automatic royalty rate applies. See [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md).
+- Issues and PRs are welcome. Contributors retain authorship and their own copyright. Deliberate accepted contributions require express [PP-CLA-1.0](CONTRIBUTOR_AGREEMENT.md) acceptance or separate written terms for maintenance, publication and commercial sublicensing. Existing contributions are not retroactively assigned or accepted under new terms.
 
-## Future repositories
+## Preserve prior grants and third-party licenses
 
-Use `scripts/scaffold-owner-rights.mjs` to install the canonical LICENSE, commercial
-inquiry guide, contribution terms and machine-readable LICENSING.json into a new,
-owner-controlled repository. Record a parent and immutable source versions for derivatives.
-Do not choose MIT/Apache/GPL as this owner's default unless Rui Li expressly changes this policy.
-The current policy grants limited permissions and is **source-available**, not an
-OSI-approved open-source license. The owner may change future defaults explicitly.
+The new official distribution offer does **not** revoke valid rights already obtained under historical grants. A recipient who can rely on an earlier grant may continue within its actual scope, including MIT commercial permissions where applicable; no retroactive fee is asserted. Keeping a historical license does not license later material outside that grant's scope under MIT.
 
-Automated checks verify recorded documents/attestations and protect catalog admission.
-They do not certify copyright ownership, contract enforceability or worldwide compliance.
-Important commercial agreements require appropriate legal review.
+- RN: MIT source through `45ce4b423d0b1a4881bf169d228e014b14886b7f` and the historical v0.3.0 offer remain recorded. The exact MIT text is preserved. RN v0.7.1 recorded the earlier policy 1.0 offer; v0.7.2 uses full official-distribution scope 1.1.
+- BC: v0.1.0 retained its original reserved-rights notice; v0.1.1/v0.1.2 recorded policy 1.0. BC v0.1.3 uses scope 1.1.
+- Exact prior policy 1.0 text, immutable source boundaries, file paths/hashes and earlier history documents remain in LICENSES, LICENSING.json and Git history. Old assets, checksums and tags are not replaced. Earlier release downloads remain withdrawn from public entry points.
+- Third-party code, libraries, runtimes, assets and services keep their own licenses and attribution. Third-party permission is not reduced by this policy. See the independent projects' THIRD_PARTY_NOTICES.md.
+
+## Future repositories and checks
+
+Use scripts/scaffold-owner-rights.mjs and templates/owner-rights for owner-controlled official distributions. The canonical scope is `all-owner-controlled-material-in-official-distribution`. Preserve actual upstream versions and all historical notices when recording derivatives. Do not narrow the default to new additions only unless Rui Li explicitly changes it.
+
+Read-only checks verify scope, exact license text, historical archives, third-party safeguards, contribution terms and version-bound commercial permission records. Historical sources are checked under their recorded licenses. They do not certify ownership or prevent copying outside the catalog.
+
+This is a limited-use **source-available** policy, not an OSI-approved open-source license. Substantial commercial agreements require appropriate legal review of rights, scope and applicable law.

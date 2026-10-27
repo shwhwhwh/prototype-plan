@@ -63,11 +63,11 @@ const canonicalLicense = await readFile(new URL('../templates/owner-rights/LICEN
 const commercialTerms = await readFile(new URL('../templates/owner-rights/COMMERCIAL_LICENSE.md', import.meta.url), 'utf8');
 const contributorTerms = await readFile(new URL('../templates/owner-rights/CONTRIBUTOR_AGREEMENT.md', import.meta.url), 'utf8');
 function modernFixture(scope = 'noncommercial-experiment', ownerChild = false) {
-  const owner = 'Rui Li (@shwhwhwh)', policyId = 'LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0';
+  const owner = 'Rui Li (@shwhwhwh)', policyId = 'LicenseRef-Prototype-Plan-Personal-Noncommercial-1.1';
   const original = { ...root, owner, repository: 'https://github.com/shwhwhwh/root', rightsHolderLogin: 'shwhwhwh', license: policyId };
   const derived = { ...child, usageScope: scope, ...(ownerChild ? { owner, repository: 'https://github.com/shwhwhwh/child', rightsHolderLogin: 'shwhwhwh', license: policyId } : {}) };
-  const defaults = { ownerLogin: 'shwhwhwh', rightsHolder: owner, policyId, licenseSha256: digest(canonicalLicense), commercialSha256: digest(commercialTerms), contributorSha256: digest(contributorTerms) };
-  const makeManifest = item => ({ schemaVersion: 1, projectId: item.id, repository: item.repository, rightsHolder: owner, rightsHolderLogin: 'shwhwhwh', policyId, licenseSha256: digest(canonicalLicense), contributorAgreement: 'PP-CLA-1.0', historical: [] });
+  const defaults = { scope: 'all-owner-controlled-material-in-official-distribution', ownerLogin: 'shwhwhwh', rightsHolder: owner, policyId, licenseSha256: digest(canonicalLicense), commercialSha256: digest(commercialTerms), contributorSha256: digest(contributorTerms) };
+  const makeManifest = item => ({ schemaVersion: 1, projectId: item.id, repository: item.repository, rightsHolder: owner, rightsHolderLogin: 'shwhwhwh', policyId, licenseSha256: digest(canonicalLicense), contributorAgreement: 'PP-CLA-1.0', policyVersion: '1.1', scope: 'all-owner-controlled-material-in-official-distribution', preservesPriorGrants: true, preservesThirdPartyLicenses: true, historical: [] });
   const policy = { ownerDefaults: defaults, originals: [{ ...original, permission: 'personal-noncommercial', snapshot: 'rights/new.txt', licenseSha256: digest(canonicalLicense), historyManifest: [], historical: [{ commit: '4'.repeat(40), license: 'MIT', permission: 'license', licenseSha256: digest(license) }] }], grants: [] };
   const files = new Map();
   const put = (item, path, value) => files.set(repository(item.repository) + '/' + path, value);
@@ -85,6 +85,29 @@ function modernFixture(scope = 'noncommercial-experiment', ownerChild = false) {
   return { original, derived, defaults, policy, files, origin, put, run, makeManifest, read };
 }
 test('new policy permits noncommercial derivatives without commercial author grants', async () => { assert.equal((await modernFixture().run()).ok, true); });
+
+test('catalog rejects narrowed official scope and removed historical/third-party safeguards', async () => {
+  for (const mutation of [{scope:'new-material-only'}, {preservesPriorGrants:false}, {preservesThirdPartyLicenses:false}]) {
+    const f=modernFixture(), manifest={...f.makeManifest(f.original),...mutation};
+    f.put(f.original,'LICENSING.json',JSON.stringify(manifest));
+    const report=await f.run(); assert.equal(report.ok,false);
+    assert.match(report.projects.find(p=>p.id===f.original.id).reasons.join(' '),/scope|safeguards/);
+  }
+});
+
+test('historical limited-use source retains its embedded earlier notices after the current policy changes', async () => {
+  const f=modernFixture(), previous='5'.repeat(40), prior='Prior policy 1.0: personal study and noncommercial use permitted; commercial authorization separate.';
+  const history={throughCommit:'4'.repeat(40),license:'MIT',licenseFile:'LICENSES/legacy-MIT.txt',licenseSha256:digest(license)};
+  f.policy.originals[0].historical.push({commit:previous,license:'LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0',permission:'personal-noncommercial',licenseSha256:digest(prior),historyManifest:[history]});
+  f.derived.parentCommit=previous;f.origin.parent.commit=previous;f.origin.upstream[0].commit=previous;
+  f.put(f.derived,'PROTOTYPE_ORIGIN.json',JSON.stringify(f.origin));f.put(f.derived,'LICENSES/root.txt',prior);
+  const read=(repo,path,ref)=>repo==='shwhwhwh/root'&&path==='LICENSE'&&ref===previous?Promise.resolve(prior):f.read(repo,path,ref);
+  const run=()=>audit({schemaVersion:3,projects:[f.original,f.derived]},f.policy,read,async()=>f.files.get('shwhwhwh/root/LICENSE'));
+  assert.equal((await run()).ok,false);
+  f.origin.upstream[0].historicalNotices=[{sourceFile:'LICENSES/legacy-MIT.txt',file:'LICENSES/retained-MIT.txt'}];
+  f.put(f.derived,'PROTOTYPE_ORIGIN.json',JSON.stringify(f.origin));f.put(f.derived,'LICENSES/retained-MIT.txt',license);
+  assert.equal((await run()).ok,true);
+});
 test('new-policy commercial use requires a reviewed, version-bound author grant', async () => {
   const f = modernFixture('commercial'); assert.equal((await f.run()).ok, false);
   f.origin.upstream[0].grantId = 'commercial-1'; f.put(f.derived, 'PROTOTYPE_ORIGIN.json', JSON.stringify(f.origin));
