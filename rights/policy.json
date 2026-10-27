@@ -1,28 +1,86 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "originals": [
     {
       "id": "research-nexus",
       "name": "Research Nexus",
       "repository": "https://github.com/shwhwhwh/research-nexus",
       "owner": "Rui Li (@shwhwhwh)",
-      "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a",
-      "license": "MIT",
+      "commit": "746dc8724763b0e0e60d94d6cd9606422c1c1b4a",
+      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
       "snapshot": "rights/originals/research-nexus.txt",
-      "licenseSha256": "efbd64aaa35cc67b5f95dae5ff69fac1ed345d1d864e1a1c6b7cff0c5aeb0ec8",
-      "permission": "license"
+      "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+      "permission": "personal-noncommercial",
+      "historyManifest": [
+        {
+          "throughCommit": "45ce4b423d0b1a4881bf169d228e014b14886b7f",
+          "license": "MIT",
+          "licenseFile": "LICENSES/research-nexus-legacy-MIT.txt",
+          "licenseSha256": "efbd64aaa35cc67b5f95dae5ff69fac1ed345d1d864e1a1c6b7cff0c5aeb0ec8"
+        }
+      ],
+      "historical": [
+        {
+          "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a",
+          "license": "MIT",
+          "permission": "license",
+          "snapshot": "rights/history/research-nexus-MIT.txt",
+          "licenseSha256": "efbd64aaa35cc67b5f95dae5ff69fac1ed345d1d864e1a1c6b7cff0c5aeb0ec8"
+        },
+        {
+          "commit": "45ce4b423d0b1a4881bf169d228e014b14886b7f",
+          "license": "MIT",
+          "permission": "license",
+          "snapshot": "rights/history/research-nexus-MIT.txt",
+          "licenseSha256": "efbd64aaa35cc67b5f95dae5ff69fac1ed345d1d864e1a1c6b7cff0c5aeb0ec8"
+        },
+        {
+          "commit": "03e7ee03d85be3715c88fd8cb1221204a5e2db01",
+          "license": "MIT",
+          "permission": "license",
+          "snapshot": "rights/history/research-nexus-MIT.txt",
+          "licenseSha256": "efbd64aaa35cc67b5f95dae5ff69fac1ed345d1d864e1a1c6b7cff0c5aeb0ec8"
+        }
+      ]
     },
     {
       "id": "branch-canvas",
       "name": "Branch Canvas",
       "repository": "https://github.com/shwhwhwh/codex-branch-canvas",
       "owner": "Rui Li (@shwhwhwh)",
-      "commit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
-      "license": "All rights reserved",
+      "commit": "11846d276dba2569f884526a5eb5dc46d0805015",
+      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
       "snapshot": "rights/originals/branch-canvas.txt",
-      "licenseSha256": "ce52e92b26c6bf71e64a0ccb6ca2c124ae6905784b88eeb8c77a1f8d554634f3",
-      "permission": "explicit-grant"
+      "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+      "permission": "personal-noncommercial",
+      "historyManifest": [
+        {
+          "throughCommit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
+          "license": "All rights reserved",
+          "licenseFile": "LICENSES/branch-canvas-legacy-reserved.txt",
+          "licenseSha256": "ce52e92b26c6bf71e64a0ccb6ca2c124ae6905784b88eeb8c77a1f8d554634f3"
+        }
+      ],
+      "historical": [
+        {
+          "commit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
+          "license": "All rights reserved",
+          "permission": "explicit-grant",
+          "snapshot": "rights/history/branch-canvas-reserved.txt",
+          "licenseSha256": "ce52e92b26c6bf71e64a0ccb6ca2c124ae6905784b88eeb8c77a1f8d554634f3"
+        }
+      ]
     }
   ],
-  "grants": []
+  "grants": [],
+  "ownerDefaults": {
+    "ownerLogin": "shwhwhwh",
+    "rightsHolder": "Rui Li (@shwhwhwh)",
+    "policyId": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
+    "permission": "personal-noncommercial",
+    "licenseSnapshot": "templates/owner-rights/LICENSE",
+    "licenseSha256": "9881bebaa3af8f6d59d3133ab23666999f806a2bd24d80dbc5cab3cf504f5931",
+    "commercialSha256": "374b35821c551e4377a1d06d51cb0d2f6cbc57c2bb87188db01269384efa4c77",
+    "contributorSha256": "38d0b6e17510329babdb5ab1cfa05a9c40df96edfdff6064919c7976aa746601"
+  }
 }

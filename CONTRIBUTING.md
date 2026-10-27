@@ -17,9 +17,7 @@ does not transfer its ownership, imply endorsement, or automatically grant a lic
 
 ## Improve an existing project
 
-Read the dedicated repository's license first. Research Nexus is MIT; retain its
-copyright and permission notice. Branch Canvas is all rights reserved; obtain the
-author's permission before copying, modifying or redistributing its original code.
+Read the dedicated repository's license first. New RN/BC original material is reserved with free personal study and noncommercial experiments; commercial permission is separate. Historical RN MIT material keeps its MIT permissions. Read RIGHTS_POLICY.md and each recorded source license.
 Send implementation changes to the project's own repository. Use this catalog for
 discovery, cross-project ideas and updates to the pinned version.
 
@@ -36,3 +34,7 @@ choose to make public.
 ## Register derived projects
 
 Use the derivative issue form and follow [rights/README.md](rights/README.md). Add an immutable commit and parentId to projects.json only after provenance files exist in the derived repository. Required CI must pass; restricted-use permissions need maintainer-reviewed evidence, not self-attestation. The tree renders passed records only. License and copyright notices apply independently to every ancestor.
+
+## Deliberate new contributions
+
+Read CONTRIBUTOR_AGREEMENT.md. If you agree and have authority, expressly include `CLA-ACCEPTED: PP-CLA-1.0` in your PR description. Contributors retain attribution and ownership; the maintainer receives the stated maintenance, publication and commercial sublicensing grant for accepted original contributions. Incidental discussion grants nothing; separate terms may be requested.

@@ -30,3 +30,7 @@ What is incomplete, unreliable, manual, version-specific or unverified?
 ## Where others could help
 
 Useful extensions, engineering tasks and the permission needed to do them.
+
+## Owner-created defaults
+
+For Rui Li-owned new original material, use RIGHTS_POLICY.md and the owner-rights scaffold: reserved rights, free personal study/noncommercial experiments, separate commercial authorization, and express contribution terms. State all historical licenses, upstream source versions, third-party notices and intended use scope. This default does not claim another author's work.

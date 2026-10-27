@@ -18,7 +18,7 @@ function filePath(value) {
   return value;
 }
 export function validateRegistry(registry, policy) {
-  insist(registry.schemaVersion === 2 && Array.isArray(registry.projects), 'Expected projects.json schemaVersion 2');
+  insist([2, 3].includes(registry.schemaVersion) && Array.isArray(registry.projects), 'Expected projects.json schemaVersion 2 or 3');
   insist(registry.projects.length <= 150, 'Catalog limit is 150 projects');
   const ids = new Map(), repos = new Set();
   for (const item of registry.projects) {
@@ -44,6 +44,11 @@ export function validateRegistry(registry, policy) {
     }
     insist(policy.originals.some(root => root.id === current.id), 'Unreviewed original project');
     insist(item.parentId === null || item.originFile === 'PROTOTYPE_ORIGIN.json', 'Derived projects require PROTOTYPE_ORIGIN.json');
+    if (registry.schemaVersion >= 3 && item.parentId !== null) insist(['personal-study', 'noncommercial-experiment', 'contribution', 'commercial', 'owner-maintained'].includes(item.usageScope), 'Declare an explicit derivative use scope');
+    if (policy.ownerDefaults && (repository(item.repository).split('/')[0].toLowerCase() === policy.ownerDefaults.ownerLogin || item.rightsHolderLogin === policy.ownerDefaults.ownerLogin || item.owner === policy.ownerDefaults.rightsHolder)) {
+      insist(item.rightsHolderLogin === policy.ownerDefaults.ownerLogin && item.owner === policy.ownerDefaults.rightsHolder
+        && item.license === policy.ownerDefaults.policyId, 'Owner-created projects must retain the declared reserved/limited-use default');
+    }
   }
   return ids;
 }
@@ -70,10 +75,29 @@ export function githubReader(token = process.env.GITHUB_TOKEN) {
 export async function audit(registry, policy, read, loadSnapshot, options = {}) {
   const ids = validateRegistry(registry, policy), checks = new Map();
   const report = { schemaVersion: 1, checkedAt: new Date().toISOString(), scope: 'registered immutable commits only', projects: [] };
+  const subjectRef = item => {
+    const ref = options.ownRef ? options.ownRef(item) : item.commit;
+    insist(shaPattern.test(ref), 'Default branch check unavailable'); return ref;
+  };
+  const own = (item, path) => read(repository(item.repository), path, subjectRef(item));
+  async function ownerPolicy(item, anchor) {
+    const defaults = policy.ownerDefaults;
+    if (!defaults || item.rightsHolderLogin !== defaults.ownerLogin) return;
+    const manifest = JSON.parse(await own(item, 'LICENSING.json'));
+    insist(manifest.schemaVersion === 1 && manifest.projectId === item.id && manifest.repository === item.repository
+      && manifest.rightsHolder === defaults.rightsHolder && manifest.rightsHolderLogin === defaults.ownerLogin
+      && manifest.policyId === defaults.policyId && manifest.licenseSha256 === defaults.licenseSha256, 'Owner policy manifest mismatch');
+    insist(digest(await own(item, 'LICENSE')) === defaults.licenseSha256, 'Reserved/limited-use license changed');
+    insist(digest(await own(item, 'COMMERCIAL_LICENSE.md')) === defaults.commercialSha256, 'Commercial permission terms changed');
+    insist(digest(await own(item, 'CONTRIBUTOR_AGREEMENT.md')) === defaults.contributorSha256 && manifest.contributorAgreement === 'PP-CLA-1.0', 'Contribution terms changed');
+    if (anchor?.historyManifest) insist(JSON.stringify(manifest.historical) === JSON.stringify(anchor.historyManifest), 'Historical grants/boundary changed');
+    for (const historical of manifest.historical || []) insist(digest(await own(item, filePath(historical.licenseFile))) === historical.licenseSha256, 'Archived historical license changed');
+  }
   const auditItem = async item => {
     if (checks.has(item.id)) return checks.get(item.id);
     const result = { id: item.id, name: item.name, owner: item.owner, repository: item.repository, commit: item.commit,
-      parentId: item.parentId, license: item.license, original: item.parentId === null, status: 'blocked', reasons: [] };
+      parentId: item.parentId, license: item.license, rightsHolderLogin: item.rightsHolderLogin, usageScope: item.usageScope,
+      original: item.parentId === null, status: 'blocked', reasons: [], upstreamVersions: [] };
     checks.set(item.id, result);
     try {
       const repo = repository(item.repository);
@@ -81,36 +105,64 @@ export async function audit(registry, policy, read, loadSnapshot, options = {}) 
         const anchor = policy.originals.find(root => root.id === item.id);
         const snapshot = await loadSnapshot(anchor.snapshot);
         insist(digest(snapshot) === anchor.licenseSha256, 'Trusted license snapshot hash mismatch');
-        insist(digest(await read(repo, 'LICENSE', item.commit)) === anchor.licenseSha256, 'Original LICENSE differs from recorded version');
+        insist(digest(await own(item, 'LICENSE')) === anchor.licenseSha256, 'Original LICENSE differs from recorded version');
+        await ownerPolicy(item, anchor);
       } else {
         const parent = ids.get(item.parentId), parentCheck = await auditItem(parent);
         insist(parentCheck.status === 'passed', 'Parent checks have not passed');
-        const origin = JSON.parse(await read(repo, 'PROTOTYPE_ORIGIN.json', item.commit));
+        const origin = JSON.parse(await own(item, 'PROTOTYPE_ORIGIN.json'));
         insist(origin.schemaVersion === 1 && origin.projectId === item.id && origin.repository === item.repository, 'Origin manifest identity mismatch');
-        insist(origin.parent?.id === parent.id && origin.parent.repository === parent.repository && origin.parent.commit === parent.commit, 'Origin manifest parent mismatch');
+        const parentCommit = item.parentCommit || parent.commit;
+        const parentAnchor = policy.originals.find(root => root.id === parent.id);
+        insist(parentCommit === parent.commit || parentAnchor?.historical?.some(version => version.commit === parentCommit), 'Unreviewed historical parent version');
+        insist(origin.parent?.id === parent.id && origin.parent.repository === parent.repository && origin.parent.commit === parentCommit, 'Origin manifest parent mismatch');
+        if (registry.schemaVersion >= 3) insist(origin.usageScope === item.usageScope, 'Origin use scope mismatch');
         insist(typeof origin.changes === 'string' && origin.changes.trim().length > 0, 'Describe derivative changes');
-        const readme = await read(repo, 'README.md', item.commit);
+        const readme = await own(item, 'README.md');
         insist(readme.includes(parent.repository), 'README must link the immediate parent repository');
-        const ancestors = []; let current = parent;
-        while (current) { ancestors.push(current); current = ids.get(current.parentId); }
-        insist(Array.isArray(origin.upstream) && origin.upstream.length === ancestors.length, 'List every upstream ancestor, with no substitutions');
-        for (const upstream of ancestors) {
+        const versions = [{ id: parent.id, commit: parentCommit }, ...(parentCheck.upstreamVersions || [])];
+        insist(Array.isArray(origin.upstream) && origin.upstream.length === versions.length, 'List every upstream ancestor, with no substitutions');
+        for (const version of versions) {
+          const upstream = ids.get(version.id);
           const entry = origin.upstream.find(record => record.id === upstream.id);
-          insist(entry && entry.repository === upstream.repository && entry.commit === upstream.commit && entry.owner === upstream.owner, 'Upstream ownership/commit mismatch: ' + upstream.id);
-          const upstreamLicense = await read(repository(upstream.repository), 'LICENSE', upstream.commit);
-          const preserved = await read(repo, filePath(entry.licenseFile), item.commit);
-          insist(normalize(preserved).includes(normalize(upstreamLicense)), 'Full upstream license/copyright notice missing: ' + upstream.id);
-          insist(readme.includes(upstream.repository) && readme.includes(upstream.owner), 'README attribution missing: ' + upstream.id);
+          insist(entry && entry.repository === upstream.repository && entry.commit === version.commit && entry.owner === upstream.owner, 'Upstream ownership/commit mismatch: ' + upstream.id);
           const anchor = policy.originals.find(root => root.id === upstream.id);
-          if (!anchor || anchor.permission === 'explicit-grant') {
+          const ownerTerms = !anchor && upstream.rightsHolderLogin === policy.ownerDefaults?.ownerLogin && upstream.license === policy.ownerDefaults?.policyId
+            ? { permission: 'personal-noncommercial', licenseSha256: policy.ownerDefaults.licenseSha256 } : null;
+          const terms = version.commit === upstream.commit ? (anchor || ownerTerms) : anchor?.historical?.find(v => v.commit === version.commit);
+          insist(!anchor || terms, 'Unknown upstream license version');
+          const upstreamLicense = await read(repository(upstream.repository), 'LICENSE', version.commit);
+          if (terms?.licenseSha256) insist(digest(upstreamLicense) === terms.licenseSha256, 'Upstream version license differs from trusted history');
+          const preserved = await own(item, filePath(entry.licenseFile));
+          insist(normalize(preserved).includes(normalize(upstreamLicense)), 'Full upstream license/copyright notice missing: ' + upstream.id);
+          // A current RN source distribution still contains previously MIT-licensed material.
+          // Preserving only its new top-level license must not discard those existing notices.
+          let historicalNotices = version.commit === upstream.commit ? (anchor?.historyManifest || []) : [];
+          if (ownerTerms) {
+            const upstreamManifest = JSON.parse(await read(repository(upstream.repository), 'LICENSING.json', version.commit));
+            insist(upstreamManifest.policyId === policy.ownerDefaults.policyId, 'Unknown intermediate owner policy');
+            historicalNotices = upstreamManifest.historical || [];
+          }
+          for (const historical of historicalNotices) {
+            const notice = entry.historicalNotices?.find(n => n.sourceFile === historical.licenseFile);
+            insist(notice && digest(await own(item, filePath(notice.file))) === historical.licenseSha256, 'Embedded historical license notice missing: ' + upstream.id);
+          }
+          insist(readme.includes(upstream.repository) && readme.includes(upstream.owner), 'README attribution missing: ' + upstream.id);
+          const isOwnerUse = terms?.permission === 'personal-noncommercial' && item.rightsHolderLogin === policy.ownerDefaults?.ownerLogin
+            && item.owner === upstream.owner && repository(item.repository).split('/')[0].toLowerCase() === policy.ownerDefaults?.ownerLogin;
+          const freeUse = terms?.permission === 'personal-noncommercial' && ['personal-study', 'noncommercial-experiment', 'contribution'].includes(item.usageScope);
+          if ((!terms || terms.permission === 'explicit-grant' || terms.permission === 'personal-noncommercial') && !isOwnerUse && !freeUse) {
             const grant = policy.grants.find(grant => grant.id === entry.grantId && grant.upstreamId === upstream.id
               && grant.repository === item.repository && grant.commit === (options.checkedCommit?.(item) || item.commit) && grant.rightsHolder === upstream.owner
-              && grant.approvedBy === 'shwhwhwh' && grant.scopes?.includes('derive-and-redistribute'));
+              && grant.approvedBy === 'shwhwhwh' && grant.scopes?.includes('derive-and-redistribute')
+              && (!['commercial', 'owner-maintained'].includes(item.usageScope) || grant.scopes.includes('commercial-use')));
             insist(grant && /^https:\/\/github\.com\//.test(grant.evidenceUrl), 'Maintainer-reviewed author grant required: ' + upstream.id);
           }
         }
+        result.upstreamVersions = versions;
         insist(typeof item.license === 'string' && item.license.length > 0, 'Declare derivative terms without replacing upstream terms');
-        insist((await read(repo, 'LICENSE', item.commit)).trim().length > 20, 'Derivative LICENSE is missing');
+        insist((await own(item, 'LICENSE')).trim().length > 20, 'Derivative LICENSE is missing');
+        await ownerPolicy(item);
       }
       result.status = 'passed';
     } catch (error) { result.reasons.push(error.message); }
@@ -141,9 +193,9 @@ async function main() {
       const head = await response.json(); insist(shaPattern.test(head.sha), 'Invalid default branch commit'); heads.set(repo, head.sha);
     } catch { heads.set(repo, null); }
   }
-  const live = await audit(registry, policy, (repo, path) => {
-    const ref = heads.get(repo); insist(ref, 'Default branch check unavailable'); return read(repo, path, ref);
-  }, snapshot, { checkedCommit: item => heads.get(repository(item.repository)) });
+  const live = await audit(registry, policy, read, snapshot, {
+    ownRef: item => heads.get(repository(item.repository)), checkedCommit: item => heads.get(repository(item.repository))
+  });
   for (const item of report.projects) {
     const current = live.projects.find(project => project.id === item.id);
     item.headCommit = heads.get(repository(item.repository));

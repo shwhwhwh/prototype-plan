@@ -1,0 +1,26 @@
+name: Commercial authorization inquiry
+description: Discuss a written commercial license for restricted original material.
+title: '[Commercial license] '
+body:
+  - type: markdown
+    attributes:
+      value: This is a public inquiry, not a license. Do not disclose confidential terms, customer data or credentials. Historical MIT rights remain unchanged.
+  - type: input
+    id: project
+    attributes:
+      label: Project repository and exact version/commit
+    validations:
+      required: true
+  - type: textarea
+    id: use
+    attributes:
+      label: Intended commercial use, distribution or hosting model
+    validations:
+      required: true
+  - type: textarea
+    id: contact
+    attributes:
+      label: Organization and requested scope, or request a private contact channel
+      description: Do not post private commercial details here. Fees and permission are agreed separately in writing.
+    validations:
+      required: true

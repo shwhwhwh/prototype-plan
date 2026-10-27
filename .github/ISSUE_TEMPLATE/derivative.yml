@@ -30,7 +30,7 @@ body:
     id: evidence
     attributes:
       label: Preserved licenses, attribution, changes and permission evidence
-      description: Include all upstream ancestors. BC requires author approval. Do not disclose private correspondence.
+      description: Include all upstream ancestors. New RN/BC commercial use requires author approval; recorded historical MIT rights remain valid. Do not disclose private correspondence.
     validations:
       required: true
   - type: checkboxes
@@ -40,3 +40,16 @@ body:
       options:
         - label: I retain upstream attribution and license terms. This submission does not itself grant permission or transfer ownership.
           required: true
+
+  - type: dropdown
+    id: usage-scope
+    attributes:
+      label: Intended use scope
+      options:
+        - personal-study
+        - noncommercial-experiment
+        - contribution
+        - commercial (separate authorization may be required)
+        - owner-maintained (own rights only)
+    validations:
+      required: true

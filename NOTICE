@@ -2,11 +2,14 @@ Prototype Plan
 Initiated and maintained by Rui Li (@shwhwhwh), 2026.
 
 Each referenced prototype retains its own author attribution and license.
-Research Nexus: Copyright (c) 2026 Rui Li; MIT License.
-Branch Canvas: Copyright (c) 2026 Rui Li; all rights reserved.
+Research Nexus and Branch Canvas: Copyright (c) 2026 Rui Li.
+New original material: all rights reserved with the limited free-use grant in LICENSE.
+Historical RN MIT grants remain unchanged; BC historic release terms are preserved.
 
 This catalog does not relicense submodules, transfer contributor ownership,
 or grant permissions not present in the project's own license. The original
 catalog material is reserved to its author unless separately licensed.
 
 Automated provenance checks govern catalog admission only. They do not add restrictions to existing MIT grants, grant BC permissions, transfer ownership of derivatives, or certify legal compliance. The original license texts are preserved in rights/originals/.
+
+Default owner policy and collaboration: RIGHTS_POLICY.md, LICENSE, COMMERCIAL_LICENSE.md and CONTRIBUTOR_AGREEMENT.md. Other authors and third parties retain their own rights.

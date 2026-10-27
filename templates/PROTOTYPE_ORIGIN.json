@@ -5,16 +5,23 @@
   "parent": {
     "id": "research-nexus",
     "repository": "https://github.com/shwhwhwh/research-nexus",
-    "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a"
+    "commit": "746dc8724763b0e0e60d94d6cd9606422c1c1b4a"
   },
   "changes": "Describe your additions; do not claim authorship of upstream work.",
   "upstream": [
     {
       "id": "research-nexus",
       "repository": "https://github.com/shwhwhwh/research-nexus",
-      "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a",
+      "commit": "746dc8724763b0e0e60d94d6cd9606422c1c1b4a",
       "owner": "Rui Li (@shwhwhwh)",
-      "licenseFile": "LICENSES/research-nexus.txt"
+      "licenseFile": "LICENSES/research-nexus.txt",
+      "historicalNotices": [
+        {
+          "sourceFile": "LICENSES/research-nexus-legacy-MIT.txt",
+          "file": "LICENSES/research-nexus-history-0.txt"
+        }
+      ]
     }
-  ]
+  ],
+  "usageScope": "noncommercial-experiment"
 }

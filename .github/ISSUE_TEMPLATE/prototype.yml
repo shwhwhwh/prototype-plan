@@ -34,3 +34,16 @@ body:
       description: Explain what others may reuse and where they need permission. Do not submit private data.
     validations:
       required: true
+
+  - type: dropdown
+    id: usage-scope
+    attributes:
+      label: Intended use scope
+      options:
+        - personal-study
+        - noncommercial-experiment
+        - contribution
+        - commercial (separate authorization may be required)
+        - owner-maintained (own rights only)
+    validations:
+      required: true

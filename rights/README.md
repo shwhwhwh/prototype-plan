@@ -1,58 +1,31 @@
-# Provenance and rights checks
+# Provenance and versioned rights checks
 
-This is a catalog admission policy and evidence trail, not DRM or legal certification.
-It cannot prevent copying outside this catalog, detect every reupload, or transfer
-ownership of original or new work. An unregistered fork is not automatically an infringement.
+This is a catalog admission safeguard, not DRM, ownership certification or a legal judgment. It cannot stop outside copying, find all reuploads or transfer anyone's rights.
 
-## What the gate checks
+## New owner default and prior grants
 
-- A unique GitHub repository and full immutable commit SHA for every registered node.
-- An acyclic parent chain terminating at an approved original in `rights/policy.json`.
-- Original authors, licenses and source commit anchors cannot be replaced by a submission.
-- Every derived repository must include `PROTOTYPE_ORIGIN.json`, link and credit every
-  ancestor in its README, and preserve the complete upstream LICENSE text in the stated files.
-- RN retains MIT. A derivative may use different terms for its own contributions; the
-  original MIT notice remains. This catalog does not convert MIT into a share-alike license.
-- BC retains all rights reserved. A derivative needs a **maintainer-reviewed author grant**
-  for the exact repository and source commit. A checkbox, guessed permission or copied
-  license file is insufficient. `grants` is initially empty; no permission is implied.
-- Other intermediate derivatives require a reviewed grant for onward use until a maintainer
-  explicitly reviews their licensing. All upstream obligations still apply.
+Rui Li's new original material uses **LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0**: all rights reserved with free personal study, noncommercial experiments and voluntary contribution work; commercial use needs separate written authorization. New owner-controlled prototypes and owner-built derivatives must keep this policy, LICENSING.json and the canonical commercial/contribution terms. Other authors retain their rights.
 
-## Register a derivative
+RN's historical MIT code, including the recorded 45ce4b4 boundary and v0.3.0 release, keeps its MIT commercial permissions. BC's old v0.1.0 retains its original package terms. Immutable historical snapshots are in rights/history/. New terms never turn unchanged old MIT material into exclusively noncommercial code.
 
-1. Read the actual parent license; obtain permission when required, before reusing code.
-2. Copy `templates/PROTOTYPE_ORIGIN.json` to your repository root. Fill its real identity,
-   parent and **all** upstream ancestors; preserve original ownership, commits and license files.
-3. In README, credit each upstream owner and link each upstream repository. State the
-   changes you authored. Include a LICENSE covering your contributions without replacing
-   upstream terms. Never publish private permission correspondence without consent.
-4. Submit a derivative issue, then propose an entry in `projects.json` with `parentId`,
-   `originFile: "PROTOTYPE_ORIGIN.json"` and the immutable commit containing these files.
-5. A rights holder / maintainer reviews any restricted authorization. Only then may the
-   maintainer add a grant record: `id`, `upstreamId`, `repository`, `commit`, `rightsHolder`,
-   `approvedBy`, `scopes: ["derive-and-redistribute"]`, `evidenceUrl` (public authorized evidence).
-6. CI reads files via GitHub's API; it never runs submitted repository code. Failed or
-   unverified descendants are excluded from the published tree. The site records the check time.
+## Registration
 
-Run locally with Node 24: `node --test scripts/lineage-policy.test.mjs`, then
-`node scripts/lineage-policy.mjs --output public/lineage.json`. Public API rate limits apply;
-CI uses a read-only GitHub token. A network error blocks admission, never grants permission.
+Every project has a unique public GitHub repository and immutable 40-character commit. Derived projects record parentId, optional parentCommit for a reviewed historical source, originFile and explicit usageScope in projects.json. PROTOTYPE_ORIGIN.json must match that source and use scope, list **all** ancestor versions, preserve their complete license notices, and credit authors/repositories in README. Ancestors cannot be silently substituted.
 
-PR checks use the **base commit's** checker and policy, not a contributor's modified code.
-CODEOWNERS and protected-main reviews guard changes to policy/grants/checker; the repository
-owner can administratively bypass controls. These are workflow safeguards, not irrevocable restrictions.
+Use scopes: personal-study, noncommercial-experiment, contribution, commercial, owner-maintained. Under the new limited-use policy the first three are free; commercial use needs a maintainer-reviewed grant bound to the derivative repository and checked commit. The rights holder does not need to license their own original work to themselves. This exception does not cover another author's work. Unknown intermediate licenses require separate review. A historical MIT ancestor is checked under its MIT terms, including free commercial rights, not under the owner's later restrictions.
 
-The read-only workflow audits the registry daily and on manual dispatch. The website reads
-the latest completed main-branch run and its exact registry version; only successful checks
-are used for live descendants. If a newer check fails or is unavailable/stale, descendants
-are withheld and the site shows its dated original-project snapshot. CI has no main-branch
-write permission. No third-party files are auto-modified, and no infringement allegations
-or notices are automatically sent.
+An explicit grant record contains id, upstreamId, repository, commit, rightsHolder, approvedBy, scopes including derive-and-redistribute (and commercial-use for commercial/owner-maintained use), and public authorized evidenceUrl. Do not expose private permission correspondence; arrange suitable public evidence with the parties. A checkbox or inferred permission is not such a grant.
 
-Sources: [GitHub licensing guidance](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository),
-[MIT terms](https://choosealicense.com/licenses/mit/).
+## Collaboration
 
-## Installed automation
+New deliberate external code/documentation contributions require express PP-CLA-1.0 attestation or separately agreed terms. Contributors retain ownership and credit, granting the maintainer nonexclusive rights to maintain, publish and commercially sublicense accepted contributions. Existing contributions are not retroactively covered. Automated attestation is evidence of a statement, not proof of legal authority. CODEOWNERS review remains required.
 
-The active read-only workflow is `.github/workflows/lineage.yml`; `templates/ci/lineage.yml` is a reference copy. It runs on push, PR, manual dispatch and daily schedule. Main requires the `lineage-policy` status from GitHub Actions and CODEOWNERS review for ordinary collaborators. The owner retains the documented administrative bypass. There is no scheduled write access to main or any derived repository.
+## Operation
+
+The read-only workflows run on push, PR, manual dispatch and daily schedule (lineage). PRs use the base commit's checker/policy, never submitted executable code. Only public repository files are read. Both registered source and default-branch attribution files are checked; upstream historic licenses are always read at their **recorded** commits. Network failures block admission. Current source notice removal and changed historical archives fail checks.
+
+Main requires lineage-policy from GitHub Actions and CODEOWNERS approval; the owner retains administrative bypass. The website reads the latest completed successful main run and its exact index. Failures, unavailable results or results older than 50 hours hide descendants and show a dated original snapshot. No scheduled writes, automatic allegations or external repository modifications occur.
+
+Run: `node --test scripts/lineage-policy.test.mjs`, then `node scripts/lineage-policy.mjs --output public/lineage.json`. New roots and new historic source variants need owner-reviewed anchors in policy.json before ordinary admission. See [RIGHTS_POLICY.md](../RIGHTS_POLICY.md).
+
+For current-source ancestors that bundle historical licenses, also provide `historicalNotices` in each upstream record, mapping `sourceFile` to the preserved downstream `file`. The checker verifies those archived notices separately; preserving only the new top-level LICENSE cannot remove historical MIT permissions/notices.

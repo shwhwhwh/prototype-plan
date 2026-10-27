@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "title": "Prototype Plan",
   "maintainer": "shwhwhwh",
   "projects": [
@@ -10,13 +10,29 @@
       "owner": "Rui Li (@shwhwhwh)",
       "repository": "https://github.com/shwhwhwh/research-nexus",
       "path": "prototypes/research-nexus",
-      "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a",
+      "commit": "746dc8724763b0e0e60d94d6cd9606422c1c1b4a",
       "stage": "prototype",
-      "license": "MIT",
+      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
       "latestDownloadReferenced": "v0.3.0",
-      "sourceNotes": "Pinned source includes the v0.4 DIY Beta; the v0.3.0 download covers System Template 01.",
+      "sourceNotes": "Current source includes v0.7 automatic system builds. The v0.3.0 download/demo and historical source through 45ce4b4 keep their MIT permissions.",
       "description": "A local research workspace connecting research tools and reusable system templates.",
-      "parentId": null
+      "parentId": null,
+      "rightsHolderLogin": "shwhwhwh",
+      "permissionNotes": "All rights reserved for newly licensed original material. Free personal study, noncommercial experiments and voluntary contributions; commercial use requires separate written authorization. Prior grants are preserved.",
+      "historicalLicenses": [
+        {
+          "commit": "2c1ee1e3b68f996d4d7432738dfbc1b89d005b4a",
+          "license": "MIT"
+        },
+        {
+          "commit": "45ce4b423d0b1a4881bf169d228e014b14886b7f",
+          "license": "MIT"
+        },
+        {
+          "commit": "03e7ee03d85be3715c88fd8cb1221204a5e2db01",
+          "license": "MIT"
+        }
+      ]
     },
     {
       "id": "branch-canvas",
@@ -25,13 +41,21 @@
       "owner": "Rui Li (@shwhwhwh)",
       "repository": "https://github.com/shwhwhwh/codex-branch-canvas",
       "path": "prototypes/branch-canvas",
-      "commit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
+      "commit": "11846d276dba2569f884526a5eb5dc46d0805015",
       "stage": "prototype",
-      "license": "All rights reserved",
+      "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
       "release": "v0.1.0",
-      "permissionNotes": "Obtain author permission before copying, modifying or redistributing original code.",
+      "permissionNotes": "All rights reserved for newly licensed original material. Free personal study, noncommercial experiments and voluntary contributions; commercial use requires separate written authorization. Prior grants are preserved.",
       "description": "Conversation-tree navigation and branch follow-ups in the original Codex desktop app.",
-      "parentId": null
+      "parentId": null,
+      "rightsHolderLogin": "shwhwhwh",
+      "historicalLicenses": [
+        {
+          "commit": "e69cecfe9a4d8f751644d020c23266c721f175f3",
+          "license": "All rights reserved"
+        }
+      ]
     }
-  ]
+  ],
+  "ownerDefaultPolicy": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0"
 }
