@@ -76,6 +76,6 @@ RN 保持 MIT；BC 保持 All rights reserved。后续原型的授权由其作�
 
 这套机制约束本目录的收录与展示，不能阻止目录外的复制、保证发现全部侵权，也不替代法律判断。新贡献保留自己的作者归属。
 
-## Installation status
+## 自动检查与收录审核
 
-The checker and reviewed original snapshot are available. GitHub rejected workflow upload because the current OAuth login lacks the `workflow` scope. The **inactive** workflow is at `templates/ci/lineage.yml`; it is not running yet. After the owner authorizes installation, copy it to `.github/workflows/lineage.yml`, push, confirm a successful run, and enable the required `lineage-policy` status plus CODEOWNERS review on main. Until then the site shows only dated original snapshots and withholds live descendants. No scheduled CI or protected admission gate is claimed active.
+只读工作流已安装在 `.github/workflows/lineage.yml`，覆盖 push、PR、手动运行与每日复核。`main` 对普通协作者要求 `lineage-policy` 通过并取得 CODEOWNERS 审核；仓库所有者仍保留管理绕过能力。网页读取最新主分支检查通过的索引，检查失败、未完成或过期时隐藏衍生项目。原有项目许可证不变，工作流不会向 main 或第三方仓库自动写入。
