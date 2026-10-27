@@ -15,7 +15,7 @@
 | 原型 | 当前官方包 / 安装 | 新原创内容 | 历史授权 |
 | --- | --- | --- | --- |
 | [Research Nexus](https://github.com/shwhwhwh/research-nexus) | [v0.7.1 Windows 源码包](https://github.com/shwhwhwh/research-nexus/releases/tag/v0.7.1) · [安装指南](https://github.com/shwhwhwh/research-nexus/blob/main/INSTALL.md) | 保留权利，学习/非商业试验免费，商业化另授权 | 切换前 MIT 材料继续按 MIT，包括商业使用；旧 Releases 撤下公开入口 |
-| [Branch Canvas](https://github.com/shwhwhwh/codex-branch-canvas) | [v0.1.1 Windows 插件包](https://github.com/shwhwhwh/codex-branch-canvas/releases/tag/v0.1.1) · [安装指南](https://github.com/shwhwhwh/codex-branch-canvas#readme) | 保留权利，学习/非商业试验免费，商业化另授权 | 旧 v0.1.0 保持原授权；旧 Releases 撤下公开入口 |
+| [Branch Canvas](https://github.com/shwhwhwh/codex-branch-canvas) | [v0.1.2 Windows 插件包](https://github.com/shwhwhwh/codex-branch-canvas/releases/tag/v0.1.2) · [安装指南](https://github.com/shwhwhwh/codex-branch-canvas#readme) | 保留权利，学习/非商业试验免费，商业化另授权 | 旧 v0.1.0 保持原授权；旧 Releases 撤下公开入口 |
 
 RN 的旧 MIT 权限不会因新政策被撤销或追溯收费；未改变的旧 MIT 材料仍可按 MIT 使用。新限制仅针对首次按新许可发布的原创内容。BC 的旧 ZIP、标签和校验值不被替换。[RN 许可沿革](https://github.com/shwhwhwh/research-nexus/blob/main/LICENSE_HISTORY.md) · [BC 许可沿革](https://github.com/shwhwhwh/codex-branch-canvas/blob/main/LICENSE_HISTORY.md)。
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-27T12:56:16.255Z",
+  "checkedAt": "2026-10-27T13:08:12.823Z",
   "scope": "registered commits and current default-branch attribution files",
   "projects": [
     {
@@ -24,7 +24,7 @@
       "name": "Branch Canvas",
       "owner": "Rui Li (@shwhwhwh)",
       "repository": "https://github.com/shwhwhwh/codex-branch-canvas",
-      "commit": "816e6edfb4b72594e3f004c22be51ee584832f1b",
+      "commit": "2b1adf10ec0e44ba7c47708b5d6acc461ee4d442",
       "parentId": null,
       "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
       "rightsHolderLogin": "shwhwhwh",
@@ -32,7 +32,7 @@
       "status": "passed",
       "reasons": [],
       "upstreamVersions": [],
-      "headCommit": "816e6edfb4b72594e3f004c22be51ee584832f1b",
+      "headCommit": "2b1adf10ec0e44ba7c47708b5d6acc461ee4d442",
       "headStatus": "passed"
     }
   ],
