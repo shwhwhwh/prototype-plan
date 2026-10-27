@@ -6,7 +6,7 @@ Share ideas made tangible with AI. Explore working prototypes, then help promisi
 
 Prototype Plan 是原型的总入口与协作索引。每个原型拥有自己的专属仓库、作者、问题列表、版本发布和许可证；本仓库用 Git 子模块将它们组织在一起，不复制或合并项目历史。
 
-发起与维护：**[Rui Li (@shwhwhwh)](https://github.com/shwhwhwh)** · [个人主页](https://heathcliffak.com/)
+发起与维护：**[Rui Li (@shwhwhwh)](https://github.com/shwhwhwh)** · [原型展示页](https://heathcliffak.com/prototype-plan.html) · [个人主页](https://heathcliffak.com/)
 
 ## 首批原型
 
