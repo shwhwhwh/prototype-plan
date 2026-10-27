@@ -48,14 +48,18 @@ export function validateRegistry(registry, policy) {
   return ids;
 }
 export function githubReader(token = process.env.GITHUB_TOKEN) {
+  const publicRepos = new Set();
   return async (repo, path, ref) => {
     insist(/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo), 'Invalid repo'); filePath(path);
     insist(shaPattern.test(ref), 'Read only immutable commits');
+    const headers = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', ...(token ? { Authorization: `Bearer ${token}` } : {}) };
+    if (!publicRepos.has(repo)) {
+      const metadata = await fetch(`https://api.github.com/repos/${repo}`, { redirect: 'error', signal: AbortSignal.timeout(20000), headers });
+      insist(metadata.ok, 'Repository metadata unavailable');
+      const details = await metadata.json(); insist(details.private === false, 'Only public project repositories may be indexed'); publicRepos.add(repo);
+    }
     const response = await fetch(`https://api.github.com/repos/${repo}/contents/${path.split('/').map(encodeURIComponent).join('/')}?ref=${ref}`, {
-      redirect: 'error', signal: AbortSignal.timeout(20000), headers: {
-        Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28',
-        ...(token ? { Authorization: `Bearer ${token}` } : {})
-      }
+      redirect: 'error', signal: AbortSignal.timeout(20000), headers
     });
     insist(response.ok, `GitHub file unavailable (${response.status}): ${repo}/${path}`);
     const data = await response.json();
