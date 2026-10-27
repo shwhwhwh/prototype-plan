@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-27T07:27:00.474Z",
+  "checkedAt": "2026-10-27T12:56:16.255Z",
   "scope": "registered commits and current default-branch attribution files",
   "projects": [
     {
@@ -8,7 +8,7 @@
       "name": "Research Nexus",
       "owner": "Rui Li (@shwhwhwh)",
       "repository": "https://github.com/shwhwhwh/research-nexus",
-      "commit": "746dc8724763b0e0e60d94d6cd9606422c1c1b4a",
+      "commit": "f86114b2c4badd8bdf8300b8508b73ed5c72b952",
       "parentId": null,
       "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
       "rightsHolderLogin": "shwhwhwh",
@@ -16,7 +16,7 @@
       "status": "passed",
       "reasons": [],
       "upstreamVersions": [],
-      "headCommit": "746dc8724763b0e0e60d94d6cd9606422c1c1b4a",
+      "headCommit": "f86114b2c4badd8bdf8300b8508b73ed5c72b952",
       "headStatus": "passed"
     },
     {
@@ -24,7 +24,7 @@
       "name": "Branch Canvas",
       "owner": "Rui Li (@shwhwhwh)",
       "repository": "https://github.com/shwhwhwh/codex-branch-canvas",
-      "commit": "11846d276dba2569f884526a5eb5dc46d0805015",
+      "commit": "816e6edfb4b72594e3f004c22be51ee584832f1b",
       "parentId": null,
       "license": "LicenseRef-Prototype-Plan-Personal-Noncommercial-1.0",
       "rightsHolderLogin": "shwhwhwh",
@@ -32,7 +32,7 @@
       "status": "passed",
       "reasons": [],
       "upstreamVersions": [],
-      "headCommit": "11846d276dba2569f884526a5eb5dc46d0805015",
+      "headCommit": "816e6edfb4b72594e3f004c22be51ee584832f1b",
       "headStatus": "passed"
     }
   ],
