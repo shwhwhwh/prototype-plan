@@ -75,3 +75,7 @@ RN 保持 MIT；BC 保持 All rights reserved。后续原型的授权由其作�
 新增衍生项目请使用 [衍生项目登记表](https://github.com/shwhwhwh/prototype-plan/issues/new?template=derivative.yml)，按 [归属检查说明](rights/README.md) 在对应仓库保留作者、完整上游许可与来源清单。RN 的 MIT 条款保持不变；BC 必须另有作者授权。只读 CI 检查固定提交和默认分支的归属文件，不执行衍生仓库代码。每天复核，网页读取通过的检查版本后更新树。检查未通过的节点不会进入展示树。
 
 这套机制约束本目录的收录与展示，不能阻止目录外的复制、保证发现全部侵权，也不替代法律判断。新贡献保留自己的作者归属。
+
+## Installation status
+
+The checker and reviewed original snapshot are available. GitHub rejected workflow upload because the current OAuth login lacks the `workflow` scope. The **inactive** workflow is at `templates/ci/lineage.yml`; it is not running yet. After the owner authorizes installation, copy it to `.github/workflows/lineage.yml`, push, confirm a successful run, and enable the required `lineage-policy` status plus CODEOWNERS review on main. Until then the site shows only dated original snapshots and withholds live descendants. No scheduled CI or protected admission gate is claimed active.

@@ -1,0 +1,42 @@
+name: Provenance and rights
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['public/lineage.json']
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 2 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: lineage-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  lineage-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Test trusted checker
+        run: node --test trusted/scripts/lineage-policy.test.mjs
+      - name: Check registered immutable sources
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node trusted/scripts/lineage-policy.mjs --registry candidate/projects.json --policy-dir trusted --output lineage-report.json
+      - name: Job summary
+        if: always()
+        run: |
+          echo '## Registered source provenance' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Checks cover recorded commits. They are not a legal certification or a scan of all GitHub repositories.' >> "$GITHUB_STEP_SUMMARY"
+          if [ -f lineage-report.json ]; then cat lineage-report.json >> "$GITHUB_STEP_SUMMARY"; fi

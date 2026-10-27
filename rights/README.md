@@ -52,3 +52,7 @@ or notices are automatically sent.
 
 Sources: [GitHub licensing guidance](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository),
 [MIT terms](https://choosealicense.com/licenses/mit/).
+
+## Installation status
+
+The checker and reviewed original snapshot are available. GitHub rejected workflow upload because the current OAuth login lacks the `workflow` scope. The **inactive** workflow is at `templates/ci/lineage.yml`; it is not running yet. After the owner authorizes installation, copy it to `.github/workflows/lineage.yml`, push, confirm a successful run, and enable the required `lineage-policy` status plus CODEOWNERS review on main. Until then the site shows only dated original snapshots and withholds live descendants. No scheduled CI or protected admission gate is claimed active.
